@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: linear-gradient(to bottom, #e2c5ff, #ffdcff, #e0b8ff);
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 50px;
+    text-align: center;
+    padding: 50px 0 50px 0;
+
+}
+
+#options{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.option-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    box-shadow: rgb(6, 66, 131) 0px 20px 30px -10px;
+    margin: 10px;
+    border-radius: 20px;
+}
+
+.options-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 600px) {
+    h1{
+        padding-top: 60px;
+    }
+
+    #question{
+        background-color: #b38bd4;
+        font-size: 20px;
+        margin: 0 40px 0 40px;
+        padding: 30px;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        border-radius: 50px;
+        color: white;
+        font-weight: bold;
+    }
+
+    .option-image {
+        margin: 40px 0 0 0;
+    }
+}

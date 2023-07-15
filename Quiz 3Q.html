@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz 3Q</title>
+    <link rel="stylesheet" href="stylesQuiz.css">
+</head>
+<body>
+    <h1>Quiz 3Q..</h1>
+    <div id="quiz-container">
+        <div id="question"></div>
+        <div id="options"></div>
+        <button id="next-btn">Next</button>
+    </div>
+
+    <script>
+        let questions = [
+            {
+                question: "Which planet is known as the Red Planet?",
+                options: [
+                    "mars.jpg",
+                    "jupiter.jpg"
+                ],
+                answer: 0
+            },
+            {
+                question: "Who painted the Mona Lisa?",
+                options: [
+                    "mozart.jpg",
+                    "da-vinci.jpg"
+                ],
+                answer: 1
+            },
+            {
+                question: "Who wrote the play Romeo and Juliet?",
+                options: [
+                    "shakespeare.jpg",
+                    "michelangelo.jpg"
+                ],
+                answer: 0
+            },
+            {
+                question: "Which country is known for producing the most coffee in the world?",
+                options: [
+                    "brazil.jpg",
+                    "argentina.jpg"
+                ],
+                answer: 0
+            },
+            {
+                question: "Which country is known as the Land of the Rising Sun?",
+                options: [
+                    "japan.jpg",
+                    "china.jpg"
+                ],
+                answer: 0
+            },
+            {
+                question: "What is the world's longest river?",
+                options: [
+                    "nile.jpg",
+                    "amazon.jpg"
+                ],
+                answer: 1
+            },
+            {
+                question: "Who invented the telephone?",
+                options: [
+                    "thomas.jpg",
+                    "bell.jpg"
+                ],
+                answer: 1
+            },
+            {
+                question: "Which country is famous for its tulips?",
+                options: [
+                    "japan2.jpg",
+                    "netherland.jpg"
+                ],
+                answer: 1
+            },
+            {
+                question: "Who painted the Starry Night?",
+                options: [
+                    "gogh.jpg",
+                    "mozart.jpg"
+                ],
+                answer: 0
+            },
+            {
+                question: "What is currency of Japan?",
+                options: [
+                    "yen.jpg",
+                    "euro.jpg"
+                ],
+                answer: 0
+            },
+            {
+                question: "Who is the author of the novel To Kill a Mockingbird?",
+                options: [
+                    "scoot.jpg",
+                    "harperlee.jpg"
+                ],
+                answer: 1
+            },
+            {
+                question: "Who was the Greek god of thunder?",
+                options: [
+                    "zeus.jpg",
+                    "poseidon.jpg"
+                ],
+                answer: 0
+            },
+            {
+                question: "Which city hosted the 2016 Summer Olympics?",
+                options: [
+                    "rio.jpg",
+                    "tokyo.jpg"
+                ],
+                answer: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let thirdQuestionAnswered = false;
+        let questionsShown = 0;
+
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const nextButton = document.getElementById('next-btn');
+
+        function shuffleQuestions() {
+            for (let i = questions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [questions[i], questions[j]] = [questions[j], questions[i]];
+            }
+        }
+
+        function loadQuestion() {
+            const question = questions[currentQuestion];
+            questionElement.textContent = question.question;
+
+            optionsElement.innerHTML = '';
+            const optionsWrapper = document.createElement('div');
+            optionsWrapper.classList.add('options-wrapper');
+
+            question.options.forEach((option, index) => {
+                const image = document.createElement('img');
+                image.src = option;
+                image.alt = `Option ${index + 1}`;
+                image.classList.add('option-image');
+                image.addEventListener('click', () => checkAnswer(index));
+    
+            optionsWrapper.appendChild(image);
+            });
+
+            optionsElement.appendChild(optionsWrapper);
+            nextButton.style.display = 'none';
+        }
+
+
+        function checkAnswer(index) {
+            const question = questions[currentQuestion];
+            if (index === question.answer) {
+                score++;
+            }
+
+            currentQuestion++;
+            questionsShown++;
+
+            if (
+                currentQuestion === questions.length ||
+                (questionsShown > 2 && questionsShown <= 5 && !thirdQuestionAnswered)
+            ) {
+                showResult();
+            } else {
+                loadQuestion();
+            }
+        }
+
+        function showResult() {
+            const result = `You scored ${score} out of ${currentQuestion}!`;
+            alert(result);
+            location.reload(); // Reload the page
+        }
+
+        shuffleQuestions(); // Shuffle the questions array
+        loadQuestion();
+        if (currentQuestion === 2) {
+            thirdQuestionAnswered = true;
+        }
+    </script>
+</body>
+</html>
