@@ -17,7 +17,7 @@ Once you have the application open in your web browser, you will see a quiz inte
 5.  Repeat the process until you have answered all the questions or fulfilled specific conditions.
 6.  At the end of the quiz, you will receive an alert displaying your score.
 
-3 Technologies Used
+# Technologies Used
 *  HTML
 *  CSS
 *  Javascript
